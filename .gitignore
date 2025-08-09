@@ -14,3 +14,7 @@ pnpm-debug.log*
 # env
 .env
 .env.*
+
+# secrets
+backend/.env
+*.env

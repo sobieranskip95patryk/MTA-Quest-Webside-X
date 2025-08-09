@@ -1,14 +1,3 @@
-/*
-Copyright © 2025 Patryk Sobierański. All rights reserved.
-Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
-Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
-*/
-/*
-Copyright © 2025 Patryk Sobierański. All rights reserved.
-Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
-Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
-*/
-
 // PinkMan‑AI Prototype (modal + local heuristics)
 document.addEventListener('DOMContentLoaded', () => {
   const fib = (n) => {
@@ -71,4 +60,54 @@ document.addEventListener('DOMContentLoaded', () => {
   $('#pmHint')?.addEventListener('click', () => {
     $('#pmInput').value = 'Policz y dla x=7 i pokaż S(GOK:AI) dla n=12. 12345678910';
   });
+});
+
+// ===== PinkMan‑AI: połączenie z backendem OpenAI =====
+const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? 'http://localhost:8787'
+  : 'https://twoj-backend.example.com'; // <— gdy wdrożysz backend (Render/Railway/VPS)
+
+// Wyślij pytanie do backendu
+async function askPinkmanOnline(prompt) {
+  const r = await fetch(`${API_BASE}/api/ask`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
+  });
+  if (!r.ok) throw new Error('Błąd sieci');
+  const data = await r.json();
+  return data.text ?? 'Brak odpowiedzi';
+}
+
+// Podłącz do UI (modal)
+document.getElementById('aiSend')?.addEventListener('click', async () => {
+  const input = document.getElementById('aiMsg');
+  const q = (input.value || '').trim();
+  if (!q) return;
+
+  // pokaż, że myślimy…
+  const log = (t, who='you') => {
+    const box = document.getElementById('aiLog');
+    const div = document.createElement('div');
+    div.className = `p-2 my-1 rounded ${who === 'you' ? 'bg-gray-800' : 'bg-gray-800/60'}`;
+    div.innerHTML = `
+      <span class="text-[11px] uppercase text-gray-400">${who === 'you' ? 'Ty' : 'PM‑AI'}</span>
+      <div class="mt-1">${t}</div>`;
+    box.appendChild(div);
+    box.scrollTop = box.scrollHeight;
+  };
+
+  log(q, 'you');
+  input.value = '';
+
+  try {
+    // 1) spróbuj online
+    const answer = await askPinkmanOnline(q);
+    log(answer, 'ai');
+  } catch (e) {
+    // 2) fallback do lokalnych heurystyk
+    console.warn('AI online niedostępne – fallback', e);
+    const fallback = window.aiAnswer ? window.aiAnswer(q) : 'AI offline.';
+    log(fallback, 'ai');
+  }
 });
