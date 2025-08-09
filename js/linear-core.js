@@ -3,6 +3,11 @@ Copyright © 2025 Patryk Sobierański. All rights reserved.
 Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
 Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
 */
+/*
+Copyright © 2025 Patryk Sobierański. All rights reserved.
+Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
+Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
+*/
 
 // Linear core y = a*x + b
 document.addEventListener('DOMContentLoaded', () => {
