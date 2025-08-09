@@ -1,0 +1,2 @@
+@keyframes floatY { 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+.floaty { animation: floatY 6s ease-in-out infinite; }
