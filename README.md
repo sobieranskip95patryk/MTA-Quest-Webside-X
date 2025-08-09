@@ -21,3 +21,4 @@ data/           # konfigi
 ## Rozwój
 - Kod JS rozbity na moduły. Nie wymaga bundlera.
 - Docelowo dodamy `/backend` (Node/Express) i API do modelu w chmurze.
+# MTA-Quest-Webside-X
