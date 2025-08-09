@@ -1,3 +1,9 @@
+/*
+Copyright © 2025 Patryk Sobierański. All rights reserved.
+Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
+Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
+*/
+
 // GOK:AI Lab (Fibonacci + S(GOK))
 document.addEventListener('DOMContentLoaded', () => {
   const fib = (n) => {

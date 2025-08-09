@@ -1,1 +1,7 @@
+/*
+Copyright © 2025 Patryk Sobierański. All rights reserved.
+Ten plik jest częścią projektu "MTA Quest Webside X" (PinkMan-AI, GOK:AI).
+Wszelkie kopiowanie, modyfikowanie i dystrybucja bez pisemnej zgody autora zabronione.
+*/
+
 .glass { backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(30,41,59,.45), rgba(2,6,23,.45)); }
